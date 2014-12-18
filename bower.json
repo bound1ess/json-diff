@@ -1,0 +1,13 @@
+{
+	"name": "json-diff",
+	"version": "0.0.0",
+	"dependencies": {
+		"bootstrap": "latest"
+	},
+	"install": {
+		"path": {
+			"js": "public/js",
+			"css": "public/css"
+		}
+	}
+}
