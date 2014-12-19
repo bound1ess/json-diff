@@ -1,5 +1,9 @@
 var helpers = (function($) {
 
-	/* Do something here */
+	this.isArray = function(smth) {
+		return Array.isArray(smth);
+	};
+
+	return this;
 
 })(this.jQuery);
