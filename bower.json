@@ -2,7 +2,8 @@
 	"name": "json-diff",
 	"version": "0.0.0",
 	"dependencies": {
-		"bootstrap": "latest"
+		"bootstrap": "latest",
+		"jquery": "latest"
 	},
 	"install": {
 		"path": {
