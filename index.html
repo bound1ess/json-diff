@@ -10,7 +10,17 @@
 	</head>
 	<body>
 		<div class="container">
-			Hello, world!
+			<div class="row">
+				<div class="col-md-6">
+					<textarea id="first-json" class="form-control" rows="10"></textarea>
+				</div>
+				<div class="col-md-6">
+					<textarea id="second-json" class="form-control" rows="10"></textarea>
+				</div>
+			</div>
+			<div id="view-diff-container">
+				<button class="btn btn-lg btn-primary" id="view-diff">Show difference</button>
+			</div>
 		</div>
 	</body>
 </html>
