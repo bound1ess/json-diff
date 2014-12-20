@@ -6,4 +6,4 @@ var helpers = (function($) {
 
 	return this;
 
-})(this.jQuery);
+})();
