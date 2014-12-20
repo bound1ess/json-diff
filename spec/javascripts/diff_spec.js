@@ -10,4 +10,7 @@ describe("Diff suite", function() {
 		expect(willNotThrow).not.toThrow();
 		expect(diff.first).toBe("{}")
 	});
+	//it("calculates the difference between two JSON strings", function() {
+		// @TODO
+	//});
 });

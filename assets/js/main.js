@@ -8,5 +8,8 @@ $(document).ready(function() {
 			alert (exception);
 			return false;
 		}
+		// diff.calculate();
+		// @TODO
+		// => [{is: "added", path: "foo.bar.baz", line: "something meaningful"}]
 	});
 });
