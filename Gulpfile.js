@@ -23,6 +23,12 @@ gulp.task("js", function() {
 	util.log("Done.");
 });
 
-gulp.task("default", ["sass", "js"], function() {
+gulp.task("watch", function() {
+	util.log("Watching for JS/SASS file changes...");
+	gulp.watch(["assets/sass/*.sass"], ["sass"]);
+	gulp.watch(["assets/js/*.js"], ["js"]);	
+});
+
+gulp.task("default", ["sass", "js", "watch"], function() {
 	util.log("All done, good sir.");	
 });
