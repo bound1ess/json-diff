@@ -1,21 +1,21 @@
 $(document).ready(function() {
 	function addDiff(options) {
-		diff = $("<div>", {"class": "node node-" + options.is});
-		diff.append($("<strong>").html(options.path)); diff.append(options.line);
-		$("#diff").append(diff);
+		_diff = $("<div>", {"class": "node node-" + options.is});
+		_diff.append($("<strong>").html(options.path)); _diff.append(options.line);
+		$("#diff").append(_diff);
 	}
 	function addDiffs(diffs) {
 		$("#diff").empty();
-		$.each(diffs, function(diff) {
-			addDiff(diff);
+		$.each(diffs, function(_diff) {
+			addDiff(_diff);
 		});
 	}
 	$("#diff-filters button").click(function() {
 		_this = $(this), type = _this.data("is");
 		_this.addClass("active");
 		_this.siblings().removeClass("active");
-		diffs = $.grep(diff.calculate(), function(diff) {
-			return (type == "*") || (diff.is == type);
+		diffs = $.grep(diff.calculate(), function(_diff) {
+			return (type == "*") || (_diff.is == type);
 		});
 		addDiffs(diffs);
 	});
