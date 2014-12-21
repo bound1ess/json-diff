@@ -17,7 +17,7 @@ gulp.task("sass", function() {
 gulp.task("js", function() {
 	util.log("Concatenating and minifying JavaScript files...");
 	gulp.src("assets/js/*.js")
-		.pipe(uglifyJS({mangle: false, preserveComments: "all"}))
+		.pipe(uglifyJS({mangle: false, preserveComments: "some"}))
 		.pipe(concat("main.js"))
 		.pipe(gulp.dest("public/js"));
 	util.log("Done.");

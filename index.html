@@ -21,7 +21,14 @@
 			<div id="view-diff-container">
 				<button class="btn btn-lg btn-primary" id="view-diff">Show difference</button>
 			</div>
-			<div id="diff"><!-- Filter: show only added/deleted/changed lines. --></div>
+			<div id="diff-filters">
+				<hr>
+				<button data-is="*" class="btn btn-lg btn-primary">All</button>
+				<button data-is="added" class="btn btn-lg btn-success">Only Added</button>
+				<button data-is="deleted" class="btn btn-lg btn-danger">Only Deleted</button>
+				<button data-is="changed" class="btn btn-lg btn-warning">Only Changed</button>
+			</div>
+			<div id="diff"></div>
 		</div>
 	</body>
 </html>
