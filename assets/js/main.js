@@ -1,12 +1,13 @@
 $(document).ready(function() {
 	function addDiff(options) {
 		_diff = $("<div>", {"class": "node node-" + options.is});
-		_diff.append($("<strong>").html(options.path)); _diff.append(options.line);
+		_diff.append($("<strong>").html(options.path + ": "));
+		_diff.append(options.line);
 		$("#diff").append(_diff);
 	}
 	function addDiffs(diffs) {
 		$("#diff").empty();
-		$.each(diffs, function(_diff) {
+		$.each(diffs, function(index, _diff) {
 			addDiff(_diff);
 		});
 	}
