@@ -10,8 +10,21 @@ var diff = (function(helpers) {
 	};
 	
 	this.calculate = function() {
-		var diffs = [];
-		// ???
+		return this._calculate(this.first, this.second);
+	};
+
+	this._calculate = function(first, second, path) {
+		var diffs = [], path = path || "";
+		helpers.each(second, function(value, key) {
+			path = helpers.appendDotPath(path, key);
+			if (helpers.isArray(value) || helpers.isHash(value)) {
+				diffs = diffs.concat(this._calculate(helpers.dot(first, path), value, path));
+				return null;
+			}
+			if (helpers.dot(first, path)) { 
+
+			}
+		});
 		return diffs;
 	};
 

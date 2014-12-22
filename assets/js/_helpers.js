@@ -20,9 +20,16 @@ var helpers = (function($) {
 	this.dot = function(data, path) {
 		var last = data;
 		path.split(".").forEach(function(element) {
+			if (last[element] === undefined) {
+				return null;
+			}
 			last = last[element];
 		});
 		return last;
+	};
+
+	this.appendDotPath = function(path, toAppend) {
+		return path.length !== 0 ? (path + "." + toAppend) : toAppend;
 	};
 
 	this.each = function(elements, callback) {
