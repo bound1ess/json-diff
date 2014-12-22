@@ -14,4 +14,8 @@ describe("Helpers suite", function() {
 		expect(helpers.isValidJSON("meaningless string")).toBe(false);
 		expect(helpers.isValidJSON("{}")).toBe(true);
 	});
+	it("has a method that allows you to use dot notations for arrays and hashes", function() {
+		var data = {foo: {bar: [{baz: 42}]}};
+		expect(helpers.dot(data, "foo.bar.0.baz")).toBe(42);
+	});
 });

@@ -17,6 +17,14 @@ var helpers = (function($) {
 		return true;
 	};
 
+	this.dot = function(data, path) {
+		var last = data;
+		path.split(".").forEach(function(element) {
+			last = last[element];
+		});
+		return last;
+	};
+
 	return this;
 
 })();
