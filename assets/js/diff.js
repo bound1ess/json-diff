@@ -14,25 +14,74 @@ var diff = (function(helpers) {
 	};
 
 	this._calculate = function(first, second, path) {
-		console.log("Invoked with", first, second, path);
-		var diffs = [], path = path || "";
+
+		// Setup all needed variables.
+		var diffs = [], path = (path || "");
+
+		// Iterate over given array/hash.
 		helpers.each(first, function(value, key) {
+
+			console.log(value);
+
+			// Do not forget to update the current "path".
 			path = helpers.appendDotPath(path, key);
+			
+			// Work with nested structures.
 			if (helpers.isArray(value) || helpers.isHash(value)) {
-				diffs = diffs.concat(this._calculate(value, helpers.dot(second, path), path));
+
+				diffs = diffs.concat(
+					this._calculate(value, helpers.dot(second, path), path)
+				);
+
 				return null;
 			}
-			console.log(helpers.dot(second, path), value);
-			if (helpers.dot(second, path) != value) { 
-				diffs.push({is: "deleted", "path": path, line: value});
-				// console.log(path);
+
+			console.log(first, second);
+
+			// Check for changed elements.
+			if (helpers.dot(second, path) != helpers.dot(first, path)) { 
+				diffs.push({is: "changed", "path": path, line: helpers.dot(second, path)});
 			}
-			if ( ! helpers.dot(second, path)) {
+
+			// Check for deleted elements.
+			if (helpers.dot(first, path) && helpers.dot(second, path) == null) {
+				diffs.push({is: "deleted", "path": path, line: helpers.dot(first, path)});
+			}
+
+			// Check for added elements.
+			if (helpers.dot(first, path) == null && helpers.dot(second, path)) {
+				diffs.push({is: "added", "path": path, line: helpers.dot(second, path)});
+			}
+
+			// Reset the "path".
+			path = helpers.dotGoBack(path);
+		});
+
+		return diffs;
+	};
+
+	// we probably need something like this first
+	this.collectPaths = function(structure, _path) {
+
+		var paths = [], path = (_path || "");
+
+		helpers.each(structure, function(value, key) {
+				
+			if (helpers.isArray(value) || helpers.isHash(value)) {
+				
+				paths = paths.concat(
+					this.collectPaths(value, helpers.appendDotPath(path, key))
+				);
+
+			} else {
+
+				paths.push(helpers.appendDotPath(path, key));
 
 			}
-			path = "";
+
 		});
-		return diffs;
+	
+		return paths;
 	};
 
 	return this;

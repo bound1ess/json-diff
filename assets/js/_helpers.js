@@ -32,6 +32,12 @@ var helpers = (function($) {
 	this.appendDotPath = function(path, toAppend) {
 		return path.length !== 0 ? (path + "." + toAppend) : toAppend;
 	};
+		
+	this.dotGoBack = function(path) {
+		path = path.split(".");
+		path.pop();
+		return path.join(".");
+	};
 
 	this.each = function(elements, callback) {
 		if (this.isArray(elements)) {

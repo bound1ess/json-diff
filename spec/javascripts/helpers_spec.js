@@ -19,9 +19,11 @@ describe("Helpers suite", function() {
 		expect(helpers.dot(data, "foo.bar.0.baz")).toBe(42);
 		expect(helpers.dot(data, "unexistent.path")).toBe(null);
 	});
-	it("has a method that helps you build dot-like paths", function() {
+	it("has methods that help you build dot-like paths", function() {
 		expect(helpers.appendDotPath("", "foo")).toBe("foo");
 		expect(helpers.appendDotPath("foo", "bar")).toBe("foo.bar");
+
+		expect(helpers.dotGoBack("foo.bar")).toBe("foo");
 	});
 	it("has a method that iterates over an array or a hash", function() {
 		helpers.each([1, 2, 3, 4, 5], function(value, index) {
