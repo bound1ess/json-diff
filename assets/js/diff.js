@@ -14,16 +14,23 @@ var diff = (function(helpers) {
 	};
 
 	this._calculate = function(first, second, path) {
+		console.log("Invoked with", first, second, path);
 		var diffs = [], path = path || "";
-		helpers.each(second, function(value, key) {
+		helpers.each(first, function(value, key) {
 			path = helpers.appendDotPath(path, key);
 			if (helpers.isArray(value) || helpers.isHash(value)) {
-				diffs = diffs.concat(this._calculate(helpers.dot(first, path), value, path));
+				diffs = diffs.concat(this._calculate(value, helpers.dot(second, path), path));
 				return null;
 			}
-			if (helpers.dot(first, path)) { 
+			console.log(helpers.dot(second, path), value);
+			if (helpers.dot(second, path) != value) { 
+				diffs.push({is: "deleted", "path": path, line: value});
+				// console.log(path);
+			}
+			if ( ! helpers.dot(second, path)) {
 
 			}
+			path = "";
 		});
 		return diffs;
 	};

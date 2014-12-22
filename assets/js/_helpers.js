@@ -18,14 +18,15 @@ var helpers = (function($) {
 	};
 
 	this.dot = function(data, path) {
-		var last = data;
+		var last = data, failed = false;
 		path.split(".").forEach(function(element) {
 			if (last[element] === undefined) {
+				failed = true;
 				return null;
 			}
 			last = last[element];
 		});
-		return last;
+		return failed ? null : last;
 	};
 
 	this.appendDotPath = function(path, toAppend) {

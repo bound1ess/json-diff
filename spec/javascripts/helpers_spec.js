@@ -17,6 +17,7 @@ describe("Helpers suite", function() {
 	it("has a method that allows you to use dot notations for arrays and hashes", function() {
 		var data = {foo: {bar: [{baz: 42}]}};
 		expect(helpers.dot(data, "foo.bar.0.baz")).toBe(42);
+		expect(helpers.dot(data, "unexistent.path")).toBe(null);
 	});
 	it("has a method that helps you build dot-like paths", function() {
 		expect(helpers.appendDotPath("", "foo")).toBe("foo");
