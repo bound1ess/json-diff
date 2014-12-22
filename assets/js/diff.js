@@ -10,13 +10,9 @@ var diff = (function(helpers) {
 	};
 	
 	this.calculate = function() {
-		// This will later be replaced with the actual algorithm.
-		// @TODO
-		return [
-			{is: "added", path: "foo", line: "She is too good for you, admit."},
-			{is: "deleted", path: "foo.bar", line: "I would rather go back."},
-			{is: "changed", path: "foo.bar.baz", line: "I am not sure about your job."}
-		];
+		var diffs = [];
+		// ???
+		return diffs;
 	};
 
 	return this;

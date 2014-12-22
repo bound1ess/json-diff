@@ -25,6 +25,18 @@ var helpers = (function($) {
 		return last;
 	};
 
+	this.each = function(elements, callback) {
+		if (this.isArray(elements)) {
+			elements.forEach(callback);
+			return null;
+		} 
+		if (this.isHash(elements)) {
+			for (var key in elements) {
+				callback(elements[key], key);
+			}
+		}
+	};
+
 	return this;
 
 })();

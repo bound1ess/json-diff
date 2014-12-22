@@ -18,4 +18,12 @@ describe("Helpers suite", function() {
 		var data = {foo: {bar: [{baz: 42}]}};
 		expect(helpers.dot(data, "foo.bar.0.baz")).toBe(42);
 	});
+	it("has a method that iterates over an array or a hash", function() {
+		helpers.each([1, 2, 3, 4, 5], function(value, index) {
+			expect(index).toBe(value - 1);
+		});	
+		helpers.each({foo: "fo", boo: "bo"}, function(value, key) {
+			expect(key).toBe(value + "o");
+		});
+	});
 });
