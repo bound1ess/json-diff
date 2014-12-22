@@ -4,6 +4,7 @@ var sass = require("gulp-ruby-sass");
 var minifyCSS = require("gulp-minify-css");
 var concat = require("gulp-concat");
 var uglifyJS = require("gulp-uglify");
+var minifyHTML = require("gulp-minify-html");
 
 gulp.task("sass", function() {
 	util.log("Compiling and minifying SASS files...");
@@ -23,10 +24,18 @@ gulp.task("js", function() {
 	util.log("Done.");
 });
 
+gulp.task("html", function() {
+	util.log("Minifying the main HTML page...");
+	gulp.src("index.html")
+		.pipe(minifyHTML())
+		.pipe(gulp.dest("public"));
+});
+
 gulp.task("watch", function() {
 	util.log("Watching for JS/SASS file changes...");
 	gulp.watch(["assets/sass/*.sass"], ["sass"]);
 	gulp.watch(["assets/js/*.js"], ["js"]);	
+	gulp.watch(["index.full.html"], ["html"]);
 });
 
 gulp.task("default", ["sass", "js", "watch"], function() {
