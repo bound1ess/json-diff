@@ -8,7 +8,7 @@ describe("Diff suite", function() {
 		};
 		expect(willThrow).toThrow();
 		expect(willNotThrow).not.toThrow();
-		expect(diff.first).toBe("{}")
+		expect(diff.first).toEqual(jasmine.any(Object))
 	});
 	//it("calculates the difference between two JSON strings", function() {
 		// @TODO

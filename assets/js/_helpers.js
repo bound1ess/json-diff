@@ -1,7 +1,11 @@
 var helpers = (function($) {
 
 	this.isArray = function(smth) {
-		return Array.isArray(smth);
+		return this.isHash(smth) && (smth instanceof Array);
+	};
+	
+	this.isHash = function(smth) {
+		return smth && (typeof smth == "object");
 	};
 
 	this.parseJSON = function(string) {
