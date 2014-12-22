@@ -1,6 +1,10 @@
-# JSON diff viewer
+# JSON Diff Viewer
 
-More information to be added.
+![](http://i.imgur.com/G1rxYck.png)
+
+## TODO
+
+- cleanup the code, come on!
 
 ## License
 

@@ -10,51 +10,41 @@ var diff = (function(helpers) {
 	};
 	
 	this.calculate = function() {
-		return this._calculate(this.first, this.second);
-	};
+		var paths = {
+			first: this.collectPaths(this.first),
+			second: this.collectPaths(this.second)
+		};
 
-	this._calculate = function(first, second, path) {
+		var diffs = [];
 
-		// Setup all needed variables.
-		var diffs = [], path = (path || "");
+		helpers.each(paths.first, function(_path) {
 
-		// Iterate over given array/hash.
-		helpers.each(first, function(value, key) {
-
-			console.log(value);
-
-			// Do not forget to update the current "path".
-			path = helpers.appendDotPath(path, key);
-			
-			// Work with nested structures.
-			if (helpers.isArray(value) || helpers.isHash(value)) {
-
-				diffs = diffs.concat(
-					this._calculate(value, helpers.dot(second, path), path)
-				);
-
-				return null;
+			if (paths.second.indexOf(_path) === -1) {
+				diffs.push({
+					is: "deleted",
+					path: _path,
+					line: helpers.dot(this.first, _path)
+				});
+			} else if (helpers.dot(this.first, _path) != helpers.dot(this.second, _path)) {
+				diffs.push({
+					is: "changed",
+					path: _path,
+					line: helpers.dot(this.second, _path)
+				});
 			}
 
-			console.log(first, second);
+		});
 
-			// Check for changed elements.
-			if (helpers.dot(second, path) != helpers.dot(first, path)) { 
-				diffs.push({is: "changed", "path": path, line: helpers.dot(second, path)});
+		helpers.each(paths.second, function(_path) {
+
+			if (paths.first.indexOf(_path) === -1) {
+				diffs.push({
+					is: "added",
+					path: _path,
+					line: helpers.dot(this.second, _path)
+				});	
 			}
 
-			// Check for deleted elements.
-			if (helpers.dot(first, path) && helpers.dot(second, path) == null) {
-				diffs.push({is: "deleted", "path": path, line: helpers.dot(first, path)});
-			}
-
-			// Check for added elements.
-			if (helpers.dot(first, path) == null && helpers.dot(second, path)) {
-				diffs.push({is: "added", "path": path, line: helpers.dot(second, path)});
-			}
-
-			// Reset the "path".
-			path = helpers.dotGoBack(path);
 		});
 
 		return diffs;
