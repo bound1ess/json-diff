@@ -18,7 +18,6 @@ var diff = (function(helpers) {
 		var diffs = [];
 
 		helpers.each(paths.first, function(_path) {
-
 			if (paths.second.indexOf(_path) === -1) {
 				diffs.push({
 					is: "deleted",
@@ -32,11 +31,9 @@ var diff = (function(helpers) {
 					line: helpers.dot(this.second, _path)
 				});
 			}
-
 		});
 
 		helpers.each(paths.second, function(_path) {
-
 			if (paths.first.indexOf(_path) === -1) {
 				diffs.push({
 					is: "added",
@@ -44,7 +41,6 @@ var diff = (function(helpers) {
 					line: helpers.dot(this.second, _path)
 				});	
 			}
-
 		});
 
 		return diffs;
@@ -52,23 +48,16 @@ var diff = (function(helpers) {
 
 	// we probably need something like this first
 	this.collectPaths = function(structure, _path) {
-
 		var paths = [], path = (_path || "");
 
 		helpers.each(structure, function(value, key) {
-				
 			if (helpers.isArray(value) || helpers.isHash(value)) {
-				
 				paths = paths.concat(
 					this.collectPaths(value, helpers.appendDotPath(path, key))
 				);
-
 			} else {
-
 				paths.push(helpers.appendDotPath(path, key));
-
 			}
-
 		});
 	
 		return paths;

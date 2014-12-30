@@ -14,18 +14,22 @@ var helpers = (function($) {
 
 	this.isValidJSON = function(string) {
 		try { JSON.parse(string) } catch (e) { return false; }
+
 		return true;
 	};
 
 	this.dot = function(data, path) {
 		var last = data, failed = false;
+
 		path.split(".").forEach(function(element) {
 			if (last[element] === undefined) {
 				failed = true;
 				return null;
 			}
+
 			last = last[element];
 		});
+
 		return failed ? null : last;
 	};
 
@@ -36,6 +40,7 @@ var helpers = (function($) {
 	this.dotGoBack = function(path) {
 		path = path.split(".");
 		path.pop();
+
 		return path.join(".");
 	};
 
@@ -44,6 +49,7 @@ var helpers = (function($) {
 			elements.forEach(callback);
 			return null;
 		} 
+
 		if (this.isHash(elements)) {
 			for (var key in elements) {
 				callback(elements[key], key);
