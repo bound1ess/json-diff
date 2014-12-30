@@ -4,12 +4,8 @@
 
 ```shell
 git clone https://github.com/bound1ess/json-diff.git && cd json-diff
-./setup.sh
+rake install
 ```
-
-## TODO
-
-- cleanup the code, come on!
 
 ## License
 

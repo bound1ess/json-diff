@@ -10,9 +10,11 @@ GEM
     phantomjs (1.9.7.1)
     rack (1.6.0)
     rake (10.4.2)
+    sass (3.4.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   jasmine
+  sass
